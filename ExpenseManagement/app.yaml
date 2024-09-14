@@ -1,0 +1,9 @@
+runtime: java17
+instance_class: F1
+env_variables:
+  SPRING_DATASOURCE_URL: jdbc:mysql://google/expensedb?cloudSqlInstance=expensemanager-434816:us-central1:mysql-instance&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false
+  SPRING_DATASOURCE_USERNAME: root
+  SPRING_DATASOURCE_PASSWORD: Admin_2008
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  max_instances: 3

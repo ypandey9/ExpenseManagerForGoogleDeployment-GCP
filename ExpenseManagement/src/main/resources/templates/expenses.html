@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+<title>Expenses</title>
+<style>
+form {
+display:inline;
+}
+label{
+display:inline;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<br>
+	<h1>Expenses</h1>
+	<br>
+	<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Description</th>
+				<th scope="col">Amount</th>
+				<th scope="col">Date</th>
+				<th scope="col">Category</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="expense:${expenses}">
+				<td scope="row" th:text="${expense.id}">1</td>
+				<td th:text="${expense.description}">tea leaf</td>
+				<td th:text="${expense.amount}">100</td>
+				<td th:text="${expense.date}">28/08/2024</td>
+				<td th:text="${expense.category.name}">1</td>
+				<td>
+					<form th:action="@{/expenses/update/form/{id}(id=${expense.id})}"
+						method="get">
+						<button type="submit" class="btn btn-primary">Update</button>
+					</form>
+					
+					<form th:action="@{/expenses/delete/{id}(id=${expense.id})}"
+						method="post">
+						<button type="submit" class="btn btn-danger">Delete</button>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br>
+	<br>
+	<b>Total Expense Rs :<span th:text="${total!=null?total:0.0}"></span></b>
+	<br>
+	<br>
+	<a href="/expenses/showaddform">Add New Expense</a>
+	<br>
+	<a href="/expenses/show-filter-form">Filter Expense</a>
+	<br>
+	<a href="/categories/showform">Add New Category</a>
+	<br>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
